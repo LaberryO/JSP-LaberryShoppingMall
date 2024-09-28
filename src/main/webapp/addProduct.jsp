@@ -23,18 +23,24 @@
 </head>
 
 <body>
-<fmt:setLocale value="<%=request.getParameter(language) %>" />
+<fmt:setLocale value='<%=request.getParameter("language") %>' />
 <fmt:bundle basename="bundle.message">
 	<%@ include file="nav.jsp" %>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
-			<h1>상품 등록</h1>
+			<div class="col-6">
+				<h1><fmt:message key="title" /></h1>
+			</div>
+			<div class="col-6">
+				<a href="?language=ko" class="btn btn-secondary m-1">Korean</a>
+				<a href="?language=en" class="btn btn-secondary m-1">English</a>
+			</div>
 		</div>
 		<div class="row">
 			<form class="g-3" action="processAddProduct.jsp" method="post" enctype="multipart/form-data" name="registerNewProduct">
 				<div class="row m-3">
 							<div class="col-2">
-								<label for="newProduct" class=""><fmt:message key="title" /></label>
+								<label for="newProduct" class=""><fmt:message key="productId" /></label>
 							</div>
 							<div class="col-4">
 								<input type="text" class="form-control" id="newProduct" placeholder="" name="newProduct">
@@ -42,7 +48,7 @@
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="productName" class="">상품명</label>
+								<label for="productName" class=""><fmt:message key="productName" /></label>
 							</div>
 							<div class="col-4">
 								<input type="text" class="form-control" id="productName"
@@ -51,7 +57,7 @@
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="unitPrice" class="">상품 가격</label>
+								<label for="unitPrice" class=""><fmt:message key="unitPrice" /></label>
 							</div>
 							<div class="col-4">
 								<input type="text" class="form-control" id="unitPrice" placeholder="" name="unitPrice">
@@ -59,7 +65,7 @@
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="description" class="">상세 정보</label>
+								<label for="description" class=""><fmt:message key="description" /></label>
 							</div>
 							<div class="col-4">
 								<input type="text" class="form-control" id="description" placeholder="" name="description">
@@ -67,7 +73,7 @@
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="category" class="">분류</label>
+								<label for="category" class=""><fmt:message key="category" /></label>
 							</div>
 							<div class="col-4">
 								<input type="text" class="form-control" id="category"
@@ -76,29 +82,32 @@
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="condition" class="">제품 상태</label>
+								<label for="condition" class=""><fmt:message key="condition" /></label>
 							</div>
 							<div class="col-4">
 								<input type="radio" id="New"
 									placeholder="" value="New" name="condition" checked>  
-								<label for="New">신제품</label>
+								<label for="New"><fmt:message key="condition_New" /></label>
 								<input type="radio" id="Old"
 									placeholder="" value="Old" name="condition">  
-								<label for="Old">중고품</label>
+								<label for="Old"><fmt:message key="condition_Old" /></label>
 							</div>
 						</div>
 						<div class="row m-3">
 							<div class="col-2">
-								<label for="productImage" class="">상품 이미지 등록</label>
+								<label for="productImage" class=""><fmt:message key="productImage" /></label>
 							</div>
-							<div class="col-4">
-								<input type="file" id="productImage"
-									name="productImage"> 
+							<div class="col-4 d-flex">
+								<label><fmt:message key="selectFile" /><input type="file" id="productImage" name="productImage" onchange="updateMessage()" style="display: none"></label>
+								<div id="fileMessage" class="ms-2 small align-self-end"><fmt:message key="noFile" /></div> 
 							</div>
 						</div>
 						<div class="row m-3">
 							<div class="col-6">
-								<input type="button" class="btn btn-secondary mb-3 btn-block" value="등록" onclick="form_check_addProduct()">
+								<button class="btn btn-secondary mb-3 btn-block" onclick="form_check_addProduct()">
+									<fmt:message key="button" />
+								</button>
+								
 							</div>
 						</div>
 			</form>
@@ -117,6 +126,17 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 	
 	<script src="js/validation.js"></script>
+	<script>
+	function updateMessage() {
+        const input = document.getElementById('productImage');
+        const messageDiv = document.getElementById('fileMessage');
+        if (input.files.length > 0) {
+            messageDiv.textContent = input.files[0].name; // 선택된 파일 이름 표시
+        } else {
+            messageDiv.textContent = '선택된 파일이 없음'; // 기본 메시지로 설정
+        }
+    }
+	</script>
 </body>
 
 </html>

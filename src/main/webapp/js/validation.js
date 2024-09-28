@@ -1,7 +1,6 @@
 /**
  * 
  */
-alert("test");
 function form_check_addProduct(){
 	let productId = document.getElementById("newProduct");
 	let productName = document.getElementById("productName");
