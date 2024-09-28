@@ -29,7 +29,7 @@
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
 			<div class="col-6">
-				<h1><fmt:message key="title" /></h1>
+				<h1><fmt:message key="registerProduct" /></h1>
 			</div>
 			<div class="col-6">
 				<a href="?language=ko" class="btn btn-secondary m-1">Korean</a>

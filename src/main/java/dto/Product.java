@@ -10,7 +10,7 @@ public class Product implements Serializable {
 	private String category;
 	private String condition;
 	private String fileName;
-	
+	private int quantity;
 	
 	public Product() {
 		super();
@@ -21,6 +21,14 @@ public class Product implements Serializable {
 		this.productId = productId;
 		this.productName = productName;
 		this.unitPrice = unitPrice;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public String getFileName() {
