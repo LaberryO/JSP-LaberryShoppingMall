@@ -31,9 +31,9 @@
 			<div class="col-6">
 				<h1><fmt:message key="registerProduct" /></h1>
 			</div>
-			<div class="col-6">
-				<a href="?language=ko" class="btn btn-secondary m-1">Korean</a>
-				<a href="?language=en" class="btn btn-secondary m-1">English</a>
+			<div class="col-6" align="right">
+				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
+				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
 			</div>
 		</div>
 		<div class="row">
@@ -98,7 +98,7 @@
 								<label for="productImage" class=""><fmt:message key="productImage" /></label>
 							</div>
 							<div class="col-4 d-flex">
-								<label><fmt:message key="selectFile" /><input type="file" id="productImage" name="productImage" onchange="updateMessage()" style="display: none"></label>
+								<label><span style="border: 1px solid black; cursor: pointer;" class="p-1"><fmt:message key="selectFile" /></span><input type="file" id="productImage" name="productImage" onchange="updateMessage()" style="display: none"></label>
 								<div id="fileMessage" class="ms-2 small align-self-end"><fmt:message key="noFile" /></div> 
 							</div>
 						</div>
@@ -126,6 +126,7 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 	
 	<script src="js/validation.js"></script>
+	<script src="js/language.js"></script>
 	<script>
 	function updateMessage() {
         const input = document.getElementById('productImage');

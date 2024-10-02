@@ -1,5 +1,5 @@
 <%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -20,58 +20,73 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <script>
-        	function addToCart() {
-        		if(confirm("상품을 추가하시겠습니까?")) {
-        			document.addForm.submit();
-        		} else {
-        			document.addForm.reset();
-        		}
-        	}
-        </script>
 </head>
 <fmt:setLocale value='<%=request.getParameter("language") %>' />
 <fmt:bundle basename="bundle.message">
-<body id="page-top">
+<body>
 	<%@ include file="nav.jsp" %>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
 			<div class="col-6">
-				<h1><fmt:message key="productInfo" /></h1>
+				<h1><fmt:message key="cartTitle" /></h1>
 			</div>
 			<div class="col-6" align="right">
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
 			</div>
 		</div>
-		<%
-			String id = request.getParameter("id");
-			ProductRepository dao = ProductRepository.getInstance();
-			Product product = dao.getProductById(id);
-		%>
+		<div class="row mt-5">
+			<table width="100%">
+				<tr>
+					<td align="left">
+						<a href="" class="btn btn-danger"><fmt:message key="cartDelete" /></a>
+					</td>
+					<td align="right">
+						<a href="" class="btn btn-success"><fmt:message key="cartOrder" /></a>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<div class="row">
-			<div class="col-md-6">
-				<img src="assets/img/product/<%=product.getFileName() %>" class="img-fluid">
-			</div>
-			<div class="col-md-6">
-	  			<h3><%=product.getProductName() %></h3>
-	  			<p><%=product.getDescription() %></p>
-	  			<p><b><fmt:message key="productId" /> : </b><span><%=product.getProductId() %></span></p>
-	  			<p><b><fmt:message key="category" /> : </b><span><%=product.getCategory() %></span></p>
-	  			<p><b><fmt:message key="condition" /> : </b><span><%=product.getCondition() %></span></p>
-	  			<p><b><fmt:message key="unitPrice" /> : </b><span><%=product.getUnitPrice() %></span></p>
-  				<p>
-  				<form action="addCart.jsp?id=<%=product.getProductId()%>" name="addForm" method="post">
-  					<button class="btn btn-info" onclick="addToCart();"><fmt:message key="addToCart" /></button>
-  					<a href="cart.jsp" class="btn btn-danger me-1" ><fmt:message key="intoCart" /> &raquo;</button>
-  					<a href="index.jsp#portfolio" class="btn btn-secondary"><fmt:message key="returnProduct" /> &raquo;</a>
-  				</form>
-  					
-  				</p>
-			</div>
+			<table width="100%">
+				<tr>
+					<th><fmt:message key="cartProduct" /></th>
+					<th><fmt:message key="unitPrice" /></th>
+					<th><fmt:message key="cartQuantity" /></th>
+					<th><fmt:message key="cartSubTotal" /></th>
+					<th><fmt:message key="cartMisc" /></th>
+				</tr>
+				<%
+					int sum = 0; // 결제 총액
+					ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
+					if(cartList == null) cartList = new ArrayList<Product>();
+					for(int i=0; i<cartList.size(); i++) {
+						Product product = cartList.get(i);
+						int total = product.getUnitPrice() * product.getQuantity(); // total = 소계
+						sum += total;
+				%>
+				<tr>
+					<td><%=product.getProductId() %> - <%=product.getProductName() %></td>
+					<td><%=product.getUnitPrice() %></td>
+					<td><%=product.getQuantity() %></td>
+					<td><%=total %></td>
+					<td><a href="" class="badge badge-danger"><fmt:message key="cartSingleDelete" /></a></td>
+				</tr>
+				
+				<%
+					}
+				%>
+				<tr>
+					<th></th>
+					<th></th>
+					<th><fmt:message key="cartTotal" /></th>
+					<th><%=sum %></th>
+					<th></th>
+				</tr>
+			</table>
 		</div>
 	</div>
-	<%@ include file="footer.jsp" %>
+		<%@ include file="footer.jsp" %>
 	<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -81,7 +96,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-	<script src="js/language.js"></script>
+        <script src="js/language.js"></script>
 </body>
 </fmt:bundle>
 </html>
