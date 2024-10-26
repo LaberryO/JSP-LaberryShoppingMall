@@ -30,20 +30,21 @@
     %>
         <!-- Navigation-->
 		<%@ include file="nav.jsp" %>
+<fmt:bundle basename="bundle.message">
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+                <div class="masthead-subheading"><fmt:message key="indexWelcome" /></div>
+                <div class="masthead-heading text-uppercase"><fmt:message key="indexintmy" /></div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#services"><fmt:message key="indexCheckMore" /></a>
             </div>
         </header>
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase"><fmt:message key="whatService" /></h2>
+                    <h3 class="section-subheading text-muted"><fmt:message key="indexWS" /></h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -77,7 +78,7 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
+                    <h2 class="section-heading text-uppercase"><fmt:message key="whatProduct" /></h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <div class="row">
@@ -116,7 +117,7 @@
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
+                    <h2 class="section-heading text-uppercase"><fmt:message key="whatAbout" /></h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <ul class="timeline">
@@ -313,4 +314,5 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+</fmt:bundle>
 </html>

@@ -30,10 +30,10 @@
 			<div class="col-6">
 				<h1><fmt:message key="cartTitle" /></h1>
 			</div>
-			<div class="col-6" align="right">
+			<%-- <div class="col-6" align="right">
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
-			</div>
+			</div> --%>
 		</div>
 		<div class="row mt-5">
 			<table width="100%">
@@ -96,7 +96,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script src="js/language.js"></script>
+        <!-- <script src="js/language.js"></script> -->
 </body>
 </fmt:bundle>
 </html>

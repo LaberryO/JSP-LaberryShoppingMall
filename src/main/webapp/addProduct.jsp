@@ -31,10 +31,10 @@
 			<div class="col-6">
 				<h1><fmt:message key="registerProduct" /></h1>
 			</div>
-			<div class="col-6" align="right">
+			<%-- <div class="col-6" align="right">
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
-			</div>
+			</div> --%>
 		</div>
 		<div class="row">
 			<form class="g-3" action="processAddProduct.jsp" method="post" enctype="multipart/form-data" name="registerNewProduct">
