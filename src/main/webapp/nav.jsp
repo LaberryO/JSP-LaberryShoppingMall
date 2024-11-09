@@ -25,7 +25,7 @@
                         	</ul>
                         </li>
                     </ul>
-                    <div class="col-3" align="right">
+                    <div class="col-4" align="right">
                     	<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
 						<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
                     </div>

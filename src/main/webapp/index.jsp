@@ -96,13 +96,14 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/product/<%=p.getFileName() %>" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/product/<%=p.getFileName() %>" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <h4><%=p.getProductName() %></h4>
                                 <div><%=p.getDescription()%></div>
                                 <div><%=p.getUnitPrice()%></div>
-                                <div><%=p.getCondition()%></div>                       
+                                <div><%=p.getCondition()%></div>     
+                                <div>[ <a class="btn" href="editProduct.jsp?update=<%=p.getProductId()%>"><fmt:message key="productUpdate" /></a> ]</div>                  
                             </div>
                         </div>
                     </div>
