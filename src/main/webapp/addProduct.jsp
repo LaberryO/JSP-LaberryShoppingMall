@@ -103,6 +103,15 @@
 							</div>
 						</div>
 						<div class="row m-3">
+							<div class="col-2">
+								<label for="quantity" class=""><fmt:message key="quantity" /></label>
+							</div>
+							<div class="col-4">
+								<input type="text" class="form-control" id="quantity"
+									placeholder=""  name="quantity">
+							</div>
+						</div>
+						<div class="row m-3">
 							<div class="col-6">
 								<button class="btn btn-secondary mb-3 btn-block" onclick="form_check_addProduct()">
 									<fmt:message key="button" />

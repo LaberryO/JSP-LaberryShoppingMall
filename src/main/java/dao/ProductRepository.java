@@ -12,24 +12,6 @@ public class ProductRepository {
 		return instance;
 	}
 	
-	public ProductRepository() {
-		Product scs = new Product("SCS", "신 창 섭", 700000);
-		scs.setDescription("정상화의 신입니다.");
-		scs.setCategory("신");
-		scs.setCondition("중고");
-		scs.setFileName("01_scs.png");
-		
-		Product phone = new Product("JE001", "정전자 1호폰", 500000);
-		phone.setDescription("1번째로 출시된 휴대전화");
-		phone.setCategory("스마트폰");
-		phone.setCondition("신규");
-		phone.setFileName("02_phone.png");
-		
-		
-		listOfProducts.add(scs);
-		listOfProducts.add(phone);
-	}
-	
 	public ArrayList<Product> getAllProducts() {
 		return listOfProducts;
 	}

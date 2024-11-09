@@ -44,24 +44,27 @@
 				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
 			</div> --%>
 		</div>
+		<%@ include file="dbconn.jsp" %>
 		<%
 			String id = request.getParameter("id");
-			ProductRepository dao = ProductRepository.getInstance();
-			Product product = dao.getProductById(id);
+			String sql = "select * from product where productId='"+id+"'";
+        	pstmt = conn.prepareStatement(sql);
+        	rs = pstmt.executeQuery();
+        	rs.next();
 		%>
 		<div class="row">
 			<div class="col-md-6">
-				<img src="assets/img/product/<%=product.getFileName() %>" class="img-fluid">
+				<img src="assets/img/product/<%=rs.getString("fileName") %>" class="img-fluid">
 			</div>
 			<div class="col-md-6">
-	  			<h3><%=product.getProductName() %></h3>
-	  			<p><%=product.getDescription() %></p>
-	  			<p><b><fmt:message key="productId" /> : </b><span><%=product.getProductId() %></span></p>
-	  			<p><b><fmt:message key="category" /> : </b><span><%=product.getCategory() %></span></p>
-	  			<p><b><fmt:message key="condition" /> : </b><span><%=product.getCondition() %></span></p>
-	  			<p><b><fmt:message key="unitPrice" /> : </b><span><%=product.getUnitPrice() %></span></p>
+	  			<h3><%=rs.getString("productId") %></h3>
+	  			<p><%=rs.getString("description") %></p>
+	  			<p><b><fmt:message key="productId" /> : </b><span><%=rs.getString("productId") %></span></p>
+	  			<p><b><fmt:message key="category" /> : </b><span><%=rs.getString("category") %></span></p>
+	  			<p><b><fmt:message key="condition" /> : </b><span><%=rs.getString("condition") %></span></p>
+	  			<p><b><fmt:message key="unitPrice" /> : </b><span><%=rs.getString("unitPrice") %></span></p>
   				<p>
-  				<form action="addCart.jsp?id=<%=product.getProductId()%>" name="addForm" method="post">
+  				<form action="addCart.jsp?id=<%=rs.getString("productId")%>" name="addForm" method="post">
   					<button class="btn btn-info" onclick="addToCart();"><fmt:message key="addToCart" /></button>
   					<a href="cart.jsp" class="btn btn-danger me-1" ><fmt:message key="intoCart" /> &raquo;</button>
   					<a href="index.jsp#portfolio" class="btn btn-secondary"><fmt:message key="returnProduct" /> &raquo;</a>

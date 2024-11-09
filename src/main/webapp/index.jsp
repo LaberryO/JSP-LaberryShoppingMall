@@ -27,6 +27,8 @@
     <%
     ProductRepository dao = productDAO.getInstance();
     ArrayList<Product> listOfProducts = dao.getAllProducts();
+    String edit = request.getParameter("edit");
+    if (edit==null) edit="null";
     %>
         <!-- Navigation-->
 		<%@ include file="nav.jsp" %>
@@ -74,7 +76,9 @@
                 </div>
             </div>
         </section>
+        <%@ include file="dbconn.jsp" %>
         <!-- Portfolio Grid-->
+        <div id="product"></div>
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
@@ -84,26 +88,33 @@
                 <div class="row">
                 	<!-- 상품 루프 -->
                 	<%
-                		for(int i=0; i<listOfProducts.size(); i++) {
-                			Product p = listOfProducts.get(i);
-                		
+                		String sql = "select * from product";
+                    	pstmt = conn.prepareStatement(sql);
+                    	rs = pstmt.executeQuery();
+                    	while(rs.next()){
                 	%>
                 	<!-- 물품 시작 -->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" href="product.jsp?id=<%=p.getProductId() %>">
+                            <a class="portfolio-link" href="product.jsp?id=<%=rs.getString("productId") %>">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/product/<%=p.getFileName() %>" alt="..." />
+                                <img class="img-fluid d-block mx-auto" src="assets/img/product/<%=rs.getString("fileName") %>" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <h4><%=p.getProductName() %></h4>
-                                <div><%=p.getDescription()%></div>
-                                <div><%=p.getUnitPrice()%></div>
-                                <div><%=p.getCondition()%></div>     
-                                <div>[ <a class="btn" href="editProduct.jsp?update=<%=p.getProductId()%>"><fmt:message key="productUpdate" /></a> ]</div>                  
+                                <h4><%=rs.getString("productName") %></h4>
+                                <div><%=rs.getString("description")%></div>
+                                <div><%=rs.getString("unitPrice")%></div>
+                                <div><%=rs.getString("condition")%></div>     
+                                <%
+                                	if (edit.equals("update")) {
+                                %>
+                                <div>[ <a class="btn" href="editProduct.jsp?update=<%=rs.getString("productId")%>"><fmt:message key="productUpdate" /></a> ]</div>
+                                <%
+                                	}
+                                %>                 
                             </div>
                         </div>
                     </div>
@@ -309,6 +320,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="js/gotoIndex.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

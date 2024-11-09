@@ -20,8 +20,10 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		System.out.println("드라이버 등록 성공");
 		
-		DriverManager.getConnection(url, user, password);
+		conn = DriverManager.getConnection(url, user, password);
 		System.out.println("접속 성공");
+		
+		if(conn != null) System.out.println("db연결 확인 성공");
 	} catch(Exception e) {
 		System.out.println("데이터베이스 연결에 실패하였습니다. <br>");
 		System.out.println("Exception: "+e.getMessage());
