@@ -57,7 +57,7 @@
 				<img src="assets/img/product/<%=rs.getString("fileName") %>" class="img-fluid">
 			</div>
 			<div class="col-md-6">
-	  			<h3><%=rs.getString("productId") %></h3>
+	  			<h3><%=rs.getString("productName") %></h3>
 	  			<p><%=rs.getString("description") %></p>
 	  			<p><b><fmt:message key="productId" /> : </b><span><%=rs.getString("productId") %></span></p>
 	  			<p><b><fmt:message key="category" /> : </b><span><%=rs.getString("category") %></span></p>
@@ -66,7 +66,7 @@
   				<p>
   				<form action="addCart.jsp?id=<%=rs.getString("productId")%>" name="addForm" method="post">
   					<button class="btn btn-info" onclick="addToCart();"><fmt:message key="addToCart" /></button>
-  					<a href="cart.jsp" class="btn btn-danger me-1" ><fmt:message key="intoCart" /> &raquo;</button>
+  					<a href="cart.jsp" class="btn btn-danger me-1" ><fmt:message key="intoCart" /> &raquo;</a>
   					<a href="index.jsp#portfolio" class="btn btn-secondary"><fmt:message key="returnProduct" /> &raquo;</a>
   				</form>
   					

@@ -25,6 +25,7 @@
 <fmt:bundle basename="bundle.message">
 <body>
 	<%@ include file="nav.jsp" %>
+	<%@ include file="dbconn.jsp" %>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
 			<div class="col-6">
@@ -39,7 +40,7 @@
 			<table width="100%">
 				<tr>
 					<td align="left">
-						<a href="" class="btn btn-danger"><fmt:message key="cartDelete" /></a>
+						<a href="processDeleteProduct.jsp" class="btn btn-danger"><fmt:message key="cartDelete" /></a>
 					</td>
 					<td align="right">
 						<a href="" class="btn btn-success"><fmt:message key="cartOrder" /></a>
@@ -58,19 +59,25 @@
 				</tr>
 				<%
 					int sum = 0; // 결제 총액
-					ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
+					String sql = "select * from v_cart where userId=?";
+                	pstmt = conn.prepareStatement(sql);
+                	pstmt.setString(1, tempUser);
+                	rs = pstmt.executeQuery();
+                	while(rs.next()) {
+					sum += rs.getInt("subTotal");
+                		/* ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
 					if(cartList == null) cartList = new ArrayList<Product>();
 					for(int i=0; i<cartList.size(); i++) {
 						Product product = cartList.get(i);
 						int total = product.getUnitPrice() * product.getQuantity(); // total = 소계
-						sum += total;
+						sum += total; */
 				%>
 				<tr>
-					<td><%=product.getProductId() %> - <%=product.getProductName() %></td>
-					<td><%=product.getUnitPrice() %></td>
-					<td><%=product.getQuantity() %></td>
-					<td><%=total %></td>
-					<td><a href="" class="badge badge-danger"><fmt:message key="cartSingleDelete" /></a></td>
+					<td><%=rs.getString("productId") %> - <%=rs.getString("productName") %></td>
+					<td><%=rs.getString("unitPrice") %></td>
+					<td><%=rs.getString("quantity") %></td>
+					<td><%=rs.getString("subTotal") %></td>
+					<td><a href="processDeleteProduct.jsp?id=<%=rs.getString("productId") %>" class="badge badge-danger"><fmt:message key="cartSingleDelete" /></a></td>
 				</tr>
 				
 				<%

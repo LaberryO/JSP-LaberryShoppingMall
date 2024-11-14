@@ -1,4 +1,5 @@
 function gotoIndex(id,event) {
+	console.log(id, event);
 	event.preventDefault();
 	const pathName = window.location.pathname;
 	const index = "/jungseungjae-portfolio/index.jsp";

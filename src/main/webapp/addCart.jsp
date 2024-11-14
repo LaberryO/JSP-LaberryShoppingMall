@@ -1,49 +1,58 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%>
+<%-- <%@page import="dto.Product"%>
+<%@page import="dao.ProductRepository"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="dbconn.jsp" %>
 <%
 	String id = request.getParameter("id");
-	if(id == null || id.trim().equals("")) {
-		response.sendRedirect("index.jsp");
-		return;
-	}
 	
-	ProductRepository dao = ProductRepository.getInstance();
-	Product product = dao.getProductById(id);
-	if(product == null) {
-		response.sendRedirect("exceptionNoProductId.jsp");
-	}
+	stmt = conn.createStatement();
 	
-	ArrayList<Product> goodsList = dao.getAllProducts();
-	Product goods = new Product();
-	for(int i=0; i<goodsList.size(); i++) {
-		goods = goodsList.get(i);
-		if(goods.getProductId().equals(id)) {
-			break;
-		}
-	}
-	
-	ArrayList<Product> list = (ArrayList<Product>)session.getAttribute("cartlist");
-	if(list == null) {
-		list = new ArrayList<Product>();
-		session.setAttribute("cartlist", list);
-	}
-	
-	int cnt = 0;
-	Product goodsQnt = new Product();
-	for(int i=0; i<list.size(); i++) {
-		goodsQnt = list.get(i);
-		if(goodsQnt.getProductId().equals(id)) {
-			int orderQuantity = goodsQnt.getQuantity()+1;
-			goodsQnt.setQuantity(orderQuantity);
-		}
-	}
-	
-	if(cnt == 0) {
-		goods.setQuantity(1);
-		list.add(goods);
+	try {
+	    /* // 1. 테이블 존재 여부 확인
+	    String checkTableSQL = "SELECT COUNT(*) FROM all_tables WHERE table_name = ?";
+	    pstmt = conn.prepareStatement(checkTableSQL);
+	    pstmt.setString(1, user.toUpperCase());  // 테이블 이름은 대소문자 구분됨
+	    rs = pstmt.executeQuery();
+
+	    // 2. 테이블이 없으면 생성
+	    if (rs.next() && rs.getInt(1) == 0) {
+	        String createTableSQL = "CREATE TABLE " + user + " (" +
+	                "productId VARCHAR2(10) NOT NULL, " +
+	        		"userId varchar2(10) not null" +
+	                "quantity NUMBER NOT NULL, " +
+	                "CONSTRAINT buy FOREIGN KEY (productId) REFERENCES product(productId), " +
+	                "constraint who foreign key (userId) references member(userId) " +
+	                ")";
+	        stmt.executeUpdate(createTableSQL);
+	        System.out.println("Table 생성에 성공하였습니다!");
+	    } else {
+	        System.out.println("이미 존재하는 Table");
+	    } */
+
+	    // 3. `UPDATE` 또는 `INSERT` 처리
+	    String updateSQL = "UPDATE cart SET quantity = quantity + 1 WHERE productId = ?";
+	    pstmt = conn.prepareStatement(updateSQL);
+	    pstmt.setString(1, id);
+	    
+	    int rowsUpdated = pstmt.executeUpdate();
+	    
+	    // 4. `UPDATE` 실패 시, `INSERT` 처리
+	    if (rowsUpdated == 0) {
+	        String insertSQL = "INSERT INTO cart (productId, userId, quantity) VALUES (?, ?, ?)";
+	        pstmt = conn.prepareStatement(insertSQL);
+	        pstmt.setString(1, id);
+	        pstmt.setString(2, tempUser);
+	        pstmt.setInt(3, 1);
+	        
+	        pstmt.executeUpdate();
+	    }
+	    
+	    System.out.println("상품 추가 완료!");
+	    
+	} catch (SQLException e) {
+	    System.out.println("SQL 문제 발생: " + e.getMessage());
 	}
 	
 	response.sendRedirect("product.jsp?id="+id);

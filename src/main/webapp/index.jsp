@@ -1,5 +1,5 @@
-<%@page import="dao.ProductRepository"%>
-<%@page import="dto.Product"%>
+<%-- <%@page import="dao.ProductRepository"%>
+<%@page import="dto.Product"%> --%>
 <%@page import="java.util.ArrayList" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,8 +25,8 @@
     </head>
     <body id="page-top">
     <%
-    ProductRepository dao = productDAO.getInstance();
-    ArrayList<Product> listOfProducts = dao.getAllProducts();
+/*     ProductRepository dao = productDAO.getInstance();
+    ArrayList<Product> listOfProducts = dao.getAllProducts(); */
     String edit = request.getParameter("edit");
     if (edit==null) edit="null";
     %>

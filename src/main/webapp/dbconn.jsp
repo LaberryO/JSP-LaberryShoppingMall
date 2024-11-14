@@ -11,7 +11,10 @@
 <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
+	Statement stmt = null;
 	ResultSet rs = null;
+	
+	String tempUser = "test"; // 임시 유저
 	
 	try {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
