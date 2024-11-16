@@ -1,10 +1,8 @@
-<%@page import="java.util.ArrayList"%>
-<%-- <%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="dbconn.jsp" %>
 <%
+	System.out.println("addCart 진행 시작");
 	String id = request.getParameter("id");
 	
 	stmt = conn.createStatement();
@@ -40,7 +38,7 @@
 	    
 	    // 4. `UPDATE` 실패 시, `INSERT` 처리
 	    if (rowsUpdated == 0) {
-	        String insertSQL = "INSERT INTO cart (productId, userId, quantity) VALUES (?, ?, ?)";
+	        String insertSQL = "INSERT INTO cart VALUES (?, ?, ?)";
 	        pstmt = conn.prepareStatement(insertSQL);
 	        pstmt.setString(1, id);
 	        pstmt.setString(2, tempUser);
@@ -53,10 +51,11 @@
 	    
 	} catch (SQLException e) {
 	    System.out.println("SQL 문제 발생: " + e.getMessage());
+	} finally {
+		System.out.println("addCart 진행 완료");
 	}
 	
-	response.sendRedirect("product.jsp?id="+id);
-	
+	response.sendRedirect("product.jsp?id="+id+"&status=success");
 %>
 <!DOCTYPE html>
 <html>

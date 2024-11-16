@@ -1,41 +1,140 @@
-function form_check_addProduct(){
+function form_check_addProduct() {
+	event.preventDefault();
 	let productId = document.getElementById("newProduct");
 	let productName = document.getElementById("productName");
 	let unitPrice = document.getElementById("unitPrice");
 	let description = document.getElementById("description");
 	let category = document.getElementById("category");
 	let productImage = document.getElementById("productImage");
-	
-	if(!(productId.value)){
+
+	if (!(productId.value)) {
 		alert("상품의 코드를 입력해주세요.");
 		productId.focus();
 		return false;
 	}
-	if(!(productName.value)){
-			alert("상품명을 입력해주세요.");
-			productName.focus();
-			return false;
+	if (!(productName.value)) {
+		alert("상품명을 입력해주세요.");
+		productName.focus();
+		return false;
 	}
 	/*가격은 숫자만 입력하도록 구현*/
 	if (!unitPrice.value) {
-			alert("가격을 입력해주세요.");
-			unitPrice.focus();
-			return false;
-		} else if (isNaN(unitPrice.value)) {
-			alert("가격은 숫자만 입력해주세요.");
-			unitPrice.focus();
-			return false;
-		} else if (unitPrice.value < 0) {
-			alert("가격은 음수를 입력할 수 없습니다.");
-			unitPrice.focus();
-			return false;
-		} else if (unitPrice.value.length > 9) {
-			alert("가격은 천만원 이내의 숫자만 입력해주세요.");
-			unitPrice.focus();
-			return false;
-		}
-		
-		
-	
+		alert("가격을 입력해주세요.");
+		unitPrice.focus();
+		return false;
+	} else if (isNaN(unitPrice.value)) {
+		alert("가격은 숫자만 입력해주세요.");
+		unitPrice.focus();
+		return false;
+	} else if (unitPrice.value < 0) {
+		alert("가격은 음수를 입력할 수 없습니다.");
+		unitPrice.focus();
+		return false;
+	} else if (unitPrice.value.length > 9) {
+		alert("가격은 천만원 이내의 숫자만 입력해주세요.");
+		unitPrice.focus();
+		return false;
+	}
+
+
+
 	document.registerNewProduct.submit();
+}
+
+function form_check_addUser() {
+	event.preventDefault();
+
+	// URL 파라미터 'language' 값 확인
+	const urlParams = new URLSearchParams(window.location.search);
+	const language = urlParams.get('language'); // 'en' 또는 'ko'
+
+	// 입력 필드 요소들
+	let userId = document.getElementById("userId");
+	let userName = document.getElementById("userName");
+	let userPW = document.getElementById("userPW");
+	let userPhone = document.getElementById("userPhone");
+	let userAddr = document.getElementById("userAddr");
+
+	// 생일 정보 (연도, 월, 일 선택)
+	let userYear = document.getElementById("birthYear");
+	let userMonth = document.getElementById("birthMonth");
+	let userDay = document.getElementById("birthDay");
+
+	let userEmail = document.getElementById("userEmail");
+
+	// 언어에 따라 메시지 설정
+	const messages = {
+		ko: {
+			userId: "사용자 아이디를 입력해주세요.",
+			userName: "사용자 이름을 입력해주세요.",
+			userPW: "비밀번호를 입력해주세요.",
+			userPhone: "전화번호를 입력해주세요.",
+			userPhoneInvalid: "전화번호는 숫자만 입력해주세요.",
+			birthDate: "정말로 1901년 1월 1일생이십니까?",
+			userEmail: "이메일을 입력해주세요.",
+			userEmailInvalid: "유효한 이메일을 입력해주세요."
+		},
+		en: {
+			userId: "Please enter your user ID.",
+			userName: "Please enter your user name.",
+			userPW: "Please enter your password.",
+			userPhone: "Please enter your phone number.",
+			userPhoneInvalid: "Phone number can only contain numbers.",
+			birthDate: "Are you sure you were born on January 1st, 1901?",
+			userEmail: "Please enter your email address.",
+			userEmailInvalid: "Please enter a valid email address."
+		}
+	};
+
+	// 아이디 검증
+	if (!(userId.value)) {
+		alert(language === "en" ? messages.en.userId : messages.ko.userId);
+		userId.focus();
+		return false;
+	}
+
+	// 사용자명 검증
+	if (!(userName.value)) {
+		alert(language === "en" ? messages.en.userName : messages.ko.userName);
+		userName.focus();
+		return false;
+	}
+
+	// 비밀번호 검증
+	if (!(userPW.value)) {
+		alert(language === "en" ? messages.en.userPW : messages.ko.userPW);
+		userPW.focus();
+		return false;
+	}
+
+	// 전화번호 검증 (숫자만 허용)
+	if (!(userPhone.value)) {
+		alert(language === "en" ? messages.en.userPhone : messages.ko.userPhone);
+		userPhone.focus();
+		return false;
+	} else if (!/^\d+$/.test(userPhone.value)) {
+		alert(language === "en" ? messages.en.userPhoneInvalid : messages.ko.userPhoneInvalid);
+		userPhone.focus();
+		return false;
+	}
+
+	// 1901년 1월 1일 생일 방지
+	if (userYear.value === "1901" && userMonth.value === "1" && userDay.value === "1") {
+		alert(language === "en" ? messages.en.birthDate : messages.ko.birthDate);
+		return false;
+	}
+
+	// 이메일 검증 (정규식 사용)
+	if (!(userEmail.value)) {
+		alert(language === "en" ? messages.en.userEmail : messages.ko.userEmail);
+		userEmail.focus();
+		return false;
+	} else if (!/\S+@\S+\.\S+/.test(userEmail.value)) {
+		alert(language === "en" ? messages.en.userEmailInvalid : messages.ko.userEmailInvalid);
+		userEmail.focus();
+		return false;
+	}
+
+	// 모든 검증을 통과하면 폼을 제출
+	document.registerUser.submit();
 }

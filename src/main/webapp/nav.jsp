@@ -9,13 +9,13 @@
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
-                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarResponsive">
+                <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase py-4 py-lg-0">
-                        <li class="nav-item"><a class="tt-23-4 nav-link" onclick="gotoIndex('services',event)" href="#services"><fmt:message key="whatService" /></a></li>
-                        <li class="nav-item"><a class="tt-23-4 nav-link" onclick="gotoIndex('portfolio',event)" href="#portfolio"><fmt:message key="whatProduct" /></a></li>
-                        <li class="nav-item"><a class="tt-23-4 nav-link" onclick="gotoIndex('about',event)" href="#about"><fmt:message key="whatAbout" /></a></li>
-                        <li class="nav-item"><a class="tt-23-4 nav-link" onclick="gotoIndex('team',event)" href="#team"><fmt:message key="whatTeam" /></a></li>
-                        <li class="nav-item"><a class="tt-23-4 nav-link" onclick="gotoIndex('contact',event)" href="#contact"><fmt:message key="whatContact" /></a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="gotoIndex('services',event)" href="#services"><fmt:message key="whatService" /></a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="gotoIndex('portfolio',event)" href="#portfolio"><fmt:message key="whatProduct" /></a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="gotoIndex('about',event)" href="#about"><fmt:message key="whatAbout" /></a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="gotoIndex('team',event)" href="#team"><fmt:message key="whatTeam" /></a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="gotoIndex('contact',event)" href="#contact"><fmt:message key="whatContact" /></a></li>
                         <li class="nav-item dropdown">
                         	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="registerProduct" /></a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,13 +27,13 @@
                         <li class="nav-item dropdown">
                         	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="navUser" /></a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        		<li><a class="dropdown-item" href="processUser.jsp"><fmt:message key="loginUser" /></a></li>
-                        		<li><a class="dropdown-item" href="processUser.jsp"><fmt:message key="logoutUser" /></a></li>
-                        		<li><a class="dropdown-item" href="processUser.jsp"><fmt:message key="registerUser" /></a></li>
+                        		<li><a class="dropdown-item" href="processUser.jsp?action=login"><fmt:message key="loginUser" /></a></li>
+                        		<li><a class="dropdown-item" href="processUser.jsp?action=logout"><fmt:message key="logoutUser" /></a></li>
+                        		<li><a class="dropdown-item" href="registerUser.jsp"><fmt:message key="registerUser" /></a></li>
                         	</ul>
                         </li>
                     </ul>
-                    <div class="col-4" align="right">
+                    <div class="d-flex" align="right">
                     	<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
 						<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
                     </div>

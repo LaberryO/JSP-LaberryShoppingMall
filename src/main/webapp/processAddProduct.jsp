@@ -1,5 +1,3 @@
-<%-- <%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%> --%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

@@ -1,5 +1,3 @@
-<%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -85,6 +83,7 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 	<script src="js/language.js"></script>
+	<script src="js/cartStatus.js"></script>
 </body>
 </fmt:bundle>
 </html>

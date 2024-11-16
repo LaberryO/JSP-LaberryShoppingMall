@@ -1,6 +1,7 @@
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="setTime.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 	
 	String tempUser = "test"; // 임시 유저
 	
+	System.out.println("[ "+formattedDate+" ]");
 	try {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "C##dbexam";
@@ -31,6 +33,7 @@
 		System.out.println("데이터베이스 연결에 실패하였습니다. <br>");
 		System.out.println("Exception: "+e.getMessage());
 	}
+	System.out.println("----------");
 %>
 </body>
 </html>
