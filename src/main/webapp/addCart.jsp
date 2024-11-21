@@ -55,7 +55,7 @@
 		System.out.println("addCart 진행 완료");
 	}
 	
-	response.sendRedirect("product.jsp?id="+id+"&status=success");
+	response.sendRedirect("product.jsp?id="+id+"&status=cart");
 %>
 <!DOCTYPE html>
 <html>

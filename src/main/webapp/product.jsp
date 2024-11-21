@@ -83,7 +83,7 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 	<script src="js/language.js"></script>
-	<script src="js/cartStatus.js"></script>
+	<script src="js/checkStatus.js"></script>
 </body>
 </fmt:bundle>
 </html>
