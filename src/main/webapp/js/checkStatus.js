@@ -4,11 +4,19 @@ function checkStatus() {
 	const params = new URLSearchParams(url.search);
 
 	// 파라미터 값 가져오기
-	const paramValue = params.get('status'); // 예: ?param=value
+	const paramValue = params.get("status"); // 예: ?param=value
 	if (paramValue == "cart") {
 		alert("장바구니에 상품이 추가되었습니다.\nThe product has been successfully added to your cart.");
 	} else if (paramValue == "register") {
-		alert("회원가입에 성공하였습니다.\nYour account has been successfully registered.")
+		alert("회원가입에 성공하였습니다.\nYour account has been successfully registered.");
+	} else if (paramValue == "IdNotFound") {
+		alert("아이디가 올바르지 않거나, 존재하지 않습니다.\nThe ID is incorrect or does not exist.");
+	} else if (paramValue == "IncorrectPW") {
+		alert("비밀번호가 올바르지 않습니다.\n The password is incorrect");
+	} else if (paramValue == "login") {
+		alert("로그인에 성공하였습니다.\nYour account has been successfully logged in.")
+	} else if (paramValue == "logout") {
+		alert("로그아웃에 성공하였습니다.\nYour account has been successfully logged out.");
 	}
 	editParam()
 }

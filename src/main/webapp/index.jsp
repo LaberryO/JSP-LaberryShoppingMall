@@ -1,5 +1,7 @@
+<%@page import="com.jsj.util.ConditionTranslator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -100,7 +102,12 @@
                                 <h4><%=rs.getString("productName") %></h4>
                                 <div><%=rs.getString("description")%></div>
                                 <div><%=rs.getString("unitPrice")%></div>
-                                <div><%=rs.getString("condition")%></div>     
+                                <%
+                                	String condition = rs.getString("condition");
+                                	String displayCondition = ConditionTranslator.translateCondition(condition);
+                                
+                                %>
+                                <div><%=displayCondition %></div>     
                                 <%
                                 	if (edit.equals("update")) {
                                 %>

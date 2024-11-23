@@ -1,3 +1,4 @@
+<%@page import="com.jsj.util.ConditionTranslator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -49,6 +50,7 @@
         	pstmt = conn.prepareStatement(sql);
         	rs = pstmt.executeQuery();
         	rs.next();
+        	String condition = ConditionTranslator.translateCondition(rs.getString("condition"));
 		%>
 		<div class="row">
 			<div class="col-md-6">
@@ -59,7 +61,7 @@
 	  			<p><%=rs.getString("description") %></p>
 	  			<p><b><fmt:message key="productId" /> : </b><span><%=rs.getString("productId") %></span></p>
 	  			<p><b><fmt:message key="category" /> : </b><span><%=rs.getString("category") %></span></p>
-	  			<p><b><fmt:message key="condition" /> : </b><span><%=rs.getString("condition") %></span></p>
+	  			<p><b><fmt:message key="condition" /> : </b><span><%=condition %></span></p>
 	  			<p><b><fmt:message key="unitPrice" /> : </b><span><%=rs.getString("unitPrice") %></span></p>
   				<p>
   				<form action="addCart.jsp?id=<%=rs.getString("productId")%>" name="addForm" method="post">

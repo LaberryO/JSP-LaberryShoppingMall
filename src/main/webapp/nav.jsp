@@ -16,6 +16,11 @@
                         <li class="nav-item"><a class="nav-link" onclick="gotoIndex('about',event)" href="#about"><fmt:message key="whatAbout" /></a></li>
                         <li class="nav-item"><a class="nav-link" onclick="gotoIndex('team',event)" href="#team"><fmt:message key="whatTeam" /></a></li>
                         <li class="nav-item"><a class="nav-link" onclick="gotoIndex('contact',event)" href="#contact"><fmt:message key="whatContact" /></a></li>
+                        <%
+                        	/* System.out.println(session.getAttribute("userId")); */
+                        	String userId = (String) session.getAttribute("userId");
+                        	if ("admin".equals(userId)) {
+                        %>
                         <li class="nav-item dropdown">
                         	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="registerProduct" /></a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -24,11 +29,23 @@
                         		<li><a class="dropdown-item" href="editProduct.jsp?edit=delete"><fmt:message key="deleteProduct" /></a></li>
                         	</ul>
                         </li>
+                        <%
+                        	}
+                        %>
                         <li class="nav-item dropdown">
                         	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="navUser" /></a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        		<li><a class="dropdown-item" href="processUser.jsp?action=login"><fmt:message key="loginUser" /></a></li>
-                        		<li><a class="dropdown-item" href="processUser.jsp?action=logout"><fmt:message key="logoutUser" /></a></li>
+                        	<%
+	                        	if (userId == null) {
+                        	%>
+                        		<li><a class="dropdown-item" href="signInUser.jsp"><fmt:message key="loginUser" /></a></li>
+                        	<%
+	                        	} else {
+                        	%>
+                        		<li><a class="dropdown-item" href="processSignOutUser.jsp"><fmt:message key="logoutUser" /></a></li>
+                        	<%
+	                        	}
+                        	%>
                         		<li><a class="dropdown-item" href="registerUser.jsp"><fmt:message key="registerUser" /></a></li>
                         	</ul>
                         </li>
