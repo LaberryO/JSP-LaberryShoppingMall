@@ -41,7 +41,7 @@ function form_check_addProduct() {
 	document.registerNewProduct.submit();
 }
 
-function form_check_addUser(event) {
+function form_check_addUser() {
     // 기본 폼 제출 동작을 방지
     // 이미 onsubmit에서 return false를 사용하므로 preventDefault()는 필요하지 않습니다.
 

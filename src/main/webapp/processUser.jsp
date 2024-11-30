@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="dbconn.jsp"%>
 <%
 	try {
@@ -32,9 +32,14 @@
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
-        if (rs != null) rs.close();
-        if (pstmt != null) pstmt.close();
-        if (conn != null) conn.close();
+		try {
+			if (rs != null) rs.close();
+	        if (pstmt != null) pstmt.close();
+	        if (conn != null) conn.close();
+		}  catch (SQLException e) {   
+			e.printStackTrace();
+		}
+        
 	}
 
 %>
