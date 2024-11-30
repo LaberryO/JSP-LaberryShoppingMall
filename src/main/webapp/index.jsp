@@ -20,19 +20,35 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+   		<%@ include file="nav.jsp" %>
+<fmt:bundle basename="bundle.message">
     <body id="page-top">
     <%
     String edit = request.getParameter("edit");
     if (edit==null) edit="null";
     %>
         <!-- Navigation-->
-		<%@ include file="nav.jsp" %>
-<fmt:bundle basename="bundle.message">
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading"><fmt:message key="indexWelcome" /></div>
+                <%
+                	String userId = (String) session.getAttribute("userId");
+            		if (userId == null) {
+                %>
                 <div class="masthead-heading text-uppercase"><fmt:message key="indexintmy" /></div>
+                <%
+            		} else if ("admin".equals(userId)) {
+                %>
+                <div class="masthead-heading text-uppercase"><fmt:message key="welcomeAdmin" /></div>
+                <%
+            		} else {
+                %>
+                <div class="masthead-heading text-uppercase"><%=userId %><fmt:message key="indexInLogin" /></div>
+                <%
+            		}                
+                %>
                 <a class="btn btn-primary btn-xl text-uppercase" href="#services"><fmt:message key="indexCheckMore" /></a>
             </div>
         </header>
