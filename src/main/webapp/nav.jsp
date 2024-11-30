@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>        
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value='<%=request.getParameter("language") %>' />
+<%
+	String lang = (String) session.getAttribute("language");
+	if (lang == null || lang.isEmpty()) lang = "ko"; 
+%>
+<script>
+	document.cookie = "language=<%=lang %>; path=/;";
+</script>
+<fmt:setLocale value='<%=lang %>' />
 <fmt:bundle basename="bundle.message">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: black">
             <div class="container">

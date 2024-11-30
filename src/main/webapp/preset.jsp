@@ -19,10 +19,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 </head>
-<fmt:setLocale value='<%=request.getParameter("language") %>' />
+<%@ include file="nav.jsp" %>
 <fmt:bundle basename="bundle.message">
 <body>
-	<%@ include file="nav.jsp" %>
 	<%@ include file="dbconn.jsp" %>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">

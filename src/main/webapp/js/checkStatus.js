@@ -35,7 +35,7 @@ function checkStatus() {
 	};
 
 	// 언어 확인 (기본값: ko)
-	const language = new URLSearchParams(window.location.search).get("language") || "ko";
+	const language = getCookie("language") || "ko";
 
 	// 메시지 출력
 	if (paramValue && messages[paramValue]) {
@@ -44,6 +44,13 @@ function checkStatus() {
 
 	// 파라미터 제거 및 URL 업데이트
 	editParam();
+}
+
+function getCookie(name) {
+	const value = `; ${document.cookie}`;
+	const parts = value.split(`; ${name}=`);
+	if (parts.length === 2) return parts.pop().split(';').shift();
+	return null;
 }
 
 function editParam() {

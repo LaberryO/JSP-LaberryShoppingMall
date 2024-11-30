@@ -1,5 +1,17 @@
 function changeLanguage(language) {
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('language', language); // 'language' 파라미터를 설정 또는 추가
-    window.location.search = urlParams.toString(); // 수정된 쿼리 문자열로 페이지 리로드
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", "/jungseungjae-portfolio/LanguageController", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.onreadystatechange = () => {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log(xhr.responseText);
+			
+			location.reload();
+		}
+	};
+	
+	let data = "language=" + encodeURIComponent(language);
+	
+	xhr.send(data);
 }
+

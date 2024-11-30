@@ -26,9 +26,9 @@
 </head>
 
 <body>
-	<fmt:setLocale value='<%=request.getParameter("language") %>' />
+	<%@ include file="nav.jsp"%>
 	<fmt:bundle basename="bundle.message">
-		<%@ include file="nav.jsp"%>
+
 		<div class="container mt-5 pt-5">
 			<div class="row mt-5">
 				<div class="col-6">
