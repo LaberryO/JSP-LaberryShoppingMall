@@ -39,101 +39,75 @@
 			</div>
 			<div class="row">
 				<form class="g-3" action="processUser.jsp" method="post"
-					enctype="utf-8" name="registerUser">
+					name="registerUser" onsubmit="return form_check_addUser(event)">
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userId" class=""><fmt:message
-									key="userId" /></label>
+							<label for="userId"><fmt:message key="userId" /></label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control" id="userId"
-								placeholder="" name="userId">
+							<input type="text" class="form-control" id="userId" name="userId">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userPW" class=""><fmt:message
-									key="userPW" /></label>
+							<label for="userPW"><fmt:message key="userPW" /></label>
 						</div>
 						<div class="col-4">
 							<input type="password" class="form-control" id="userPW"
-								placeholder="" name="userPW">
+								name="userPW">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userName" class=""><fmt:message
-									key="userName" /></label>
+							<label for="userName"><fmt:message key="userName" /></label>
 						</div>
 						<div class="col-4">
 							<input type="text" class="form-control" id="userName"
-								placeholder="" name="userName">
+								name="userName">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userPhone" class=""><fmt:message
-									key="userPhone" /></label>
+							<label for="userPhone"><fmt:message key="userPhone" /></label>
 						</div>
 						<div class="col-4">
 							<input type="text" class="form-control" id="userPhone"
-								placeholder="" name="userPhone">
+								name="userPhone">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userAddr" class=""><fmt:message
-									key="userAddr" /></label>
+							<label for="userAddr"><fmt:message key="userAddr" /></label>
 						</div>
 						<div class="col-4">
 							<input type="text" class="form-control" id="userAddr"
-								placeholder="" name="userAddr">
+								name="userAddr">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userBirth" class=""><fmt:message
-									key="userBirth" /></label>
+							<label for="userBirth"><fmt:message key="userBirth" /></label>
 						</div>
 						<div class="col-4">
-							<select id="birthYear" name="birthYear"></select>
-							<select id="birthMonth" name="birthMonth" class="ms-2"></select>
-							<select id="birthDay" name="birthDay" class="ms-2"></select>
+							<select id="birthYear" name="birthYear"></select> <select
+								id="birthMonth" name="birthMonth" class="ms-2"></select> <select
+								id="birthDay" name="birthDay" class="ms-2"></select>
 						</div>
 					</div>
-					<%-- <div class="row m-3">
-						<div class="col-2">
-							<label for="productImage" class=""><fmt:message
-									key="productImage" /></label>
-						</div>
-						<div class="col-4 d-flex">
-							<label><span
-								style="border: 1px solid black; cursor: pointer;" class="p-1"><fmt:message
-										key="selectFile" /></span><input type="file" id="productImage"
-								name="productImage" onchange="updateMessage()"
-								style="display: none"></label>
-							<div id="fileMessage" class="ms-2 small align-self-end">
-								<fmt:message key="noFile" />
-							</div>
-						</div>
-					</div> --%>
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="userEmail" class=""><fmt:message
-									key="userEmail" /></label>
+							<label for="userEmail"><fmt:message key="userEmail" /></label>
 						</div>
 						<div class="col-4">
 							<input type="text" class="form-control" id="userEmail"
-								placeholder="example@email.com" name="userEmail">
+								name="userEmail" placeholder="example@email.com">
 						</div>
 					</div>
 					<div class="row m-3">
 						<div class="col-6">
-							<button class="btn btn-secondary mb-3 btn-block"
-								onclick="form_check_addUser()">
+							<button type="submit" class="btn btn-secondary mb-3 btn-block">
 								<fmt:message key="button" />
 							</button>
-
 						</div>
 					</div>
 				</form>

@@ -1,24 +1,49 @@
 function checkStatus() {
 	// 현재 URL에서 쿼리 파라미터 가져오기
-	const url = new URL(window.location.href);  // 현재 페이지 URL
+	const url = new URL(window.location.href);
 	const params = new URLSearchParams(url.search);
 
 	// 파라미터 값 가져오기
-	const paramValue = params.get("status"); // 예: ?param=value
-	if (paramValue == "cart") {
-		alert("장바구니에 상품이 추가되었습니다.\nThe product has been successfully added to your cart.");
-	} else if (paramValue == "register") {
-		alert("회원가입에 성공하였습니다.\nYour account has been successfully registered.");
-	} else if (paramValue == "IdNotFound") {
-		alert("아이디가 올바르지 않거나, 존재하지 않습니다.\nThe ID is incorrect or does not exist.");
-	} else if (paramValue == "IncorrectPW") {
-		alert("비밀번호가 올바르지 않습니다.\n The password is incorrect");
-	} else if (paramValue == "login") {
-		alert("로그인에 성공하였습니다.\nYour account has been successfully logged in.")
-	} else if (paramValue == "logout") {
-		alert("로그아웃에 성공하였습니다.\nYour account has been successfully logged out.");
+	const paramValue = params.get("status");
+
+	// 메시지 객체
+	const messages = {
+		cart: {
+			ko: "장바구니에 상품이 추가되었습니다.",
+			en: "The product has been successfully added to your cart."
+		},
+		register: {
+			ko: "회원가입에 성공하였습니다.",
+			en: "Your account has been successfully registered."
+		},
+		IdNotFound: {
+			ko: "아이디가 올바르지 않거나, 존재하지 않습니다.",
+			en: "The ID is incorrect or does not exist."
+		},
+		IncorrectPW: {
+			ko: "비밀번호가 올바르지 않습니다.",
+			en: "The password is incorrect."
+		},
+		login: {
+			ko: "로그인에 성공하였습니다.",
+			en: "Your account has been successfully logged in."
+		},
+		logout: {
+			ko: "로그아웃에 성공하였습니다.",
+			en: "Your account has been successfully logged out."
+		}
+	};
+
+	// 언어 확인 (기본값: ko)
+	const language = new URLSearchParams(window.location.search).get("language") || "ko";
+
+	// 메시지 출력
+	if (paramValue && messages[paramValue]) {
+		alert(messages[paramValue][language]);
 	}
-	editParam()
+
+	// 파라미터 제거 및 URL 업데이트
+	editParam();
 }
 
 function editParam() {
@@ -29,7 +54,7 @@ function editParam() {
 	const params = new URLSearchParams(url.search);
 
 	// 파라미터 제거
-	params.delete('status');  // 'param' 파라미터를 제거
+	params.delete('status'); // 'status' 파라미터를 제거
 
 	// URL에 쿼리 문자열을 반영
 	url.search = params.toString();
@@ -38,4 +63,5 @@ function editParam() {
 	window.history.replaceState({}, '', url);
 }
 
+// 상태 메시지 확인
 checkStatus();

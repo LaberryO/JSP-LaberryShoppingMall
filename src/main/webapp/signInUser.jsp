@@ -53,7 +53,7 @@
 								<label for="userPW" class=""><fmt:message key="userPW" /></label>
 							</div>
 							<div class="col-7">
-								<input type="text" class="form-control" id="userPW"
+								<input type="password" class="form-control" id="userPW"
 									placeholder="" name="userPW">
 							</div>
 						</div>
