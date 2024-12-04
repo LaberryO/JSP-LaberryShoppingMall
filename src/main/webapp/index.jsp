@@ -49,7 +49,7 @@
                 <%
             		}                
                 %>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services"><fmt:message key="indexCheckMore" /></a>
+                <a class="btn btn-primary btn-xl text-uppercase" onclick="gotoIndex('services',event)"><fmt:message key="indexCheckMore" /></a>
             </div>
         </header>
         <!-- Services-->
@@ -57,7 +57,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><fmt:message key="whatService" /></h2>
-                    <h3 class="section-subheading text-muted"><fmt:message key="indexWS" /></h3>
+                    <h3 class="section-subheading text-muted"><fmt:message key="doService" /></h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -94,7 +94,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><fmt:message key="whatProduct" /></h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"><fmt:message key="doProduct" /></h3>
                 </div>
                 <div class="row">
                 	<!-- 상품 루프 -->
@@ -127,7 +127,7 @@
                                 <%
                                 	if (edit.equals("update")) {
                                 %>
-                                <div>[ <a class="btn" href="editProduct.jsp?update=<%=rs.getString("productId")%>"><fmt:message key="productUpdate" /></a> ]</div>
+                                <div>[ <a class="btn" href="updateProduct.jsp?id=<%=rs.getString("productId")%>"><fmt:message key="productUpdate" /></a> ]</div>
                                 <%
                                 	}
                                 %>                 
@@ -146,7 +146,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase"><fmt:message key="whatAbout" /></h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"><fmt:message key="doAbout" /></h3>
                 </div>
                 <ul class="timeline">
                     <li>
@@ -207,8 +207,8 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase"><fmt:message key="whatTeam" /></h2>
+                    <h3 class="section-subheading text-muted"><fmt:message key="doTeam" /></h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
@@ -243,7 +243,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted"><fmt:message key="infoTeam" /></p></div>
                 </div>
             </div>
         </section>
@@ -270,8 +270,8 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase"><fmt:message key="whatContact" /></h2>
+                    <h3 class="section-subheading text-muted"><fmt:message key="doContact" /></h3>
                 </div>
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
@@ -312,14 +312,14 @@
                     <!---->
                     <!-- This is what your users will see when the form-->
                     <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
+                    <!-- <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
                             <div class="fw-bolder">Form submission successful!</div>
                             To activate this form, sign up at
                             <br />
                             <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Submit error message-->
                     <!---->
                     <!-- This is what your users will see when there is-->

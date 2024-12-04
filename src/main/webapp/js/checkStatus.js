@@ -31,6 +31,10 @@ function checkStatus() {
 		logout: {
 			ko: "로그아웃에 성공하였습니다.",
 			en: "Your account has been successfully logged out."
+		},
+		InvalidRequest: {
+			ko: "잘못된 접근입니다.",
+			en: "Invalid request."
 		}
 	};
 
