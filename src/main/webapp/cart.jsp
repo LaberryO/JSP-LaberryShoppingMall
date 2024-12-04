@@ -58,8 +58,9 @@
 				<%
 					int sum = 0; // 결제 총액
 					String sql = "select * from v_cart where userId=?";
+					String user = (String) session.getAttribute("userId");
                 	pstmt = conn.prepareStatement(sql);
-                	pstmt.setString(1, tempUser);
+                	pstmt.setString(1, user);
                 	rs = pstmt.executeQuery();
                 	while(rs.next()) {
 					sum += rs.getInt("subTotal");
@@ -75,7 +76,7 @@
 					<td><%=rs.getString("unitPrice") %></td>
 					<td><%=rs.getString("quantity") %></td>
 					<td><%=rs.getString("subTotal") %></td>
-					<td><a href="processDeleteProduct.jsp?id=<%=rs.getString("productId") %>" class="badge badge-danger"><fmt:message key="cartSingleDelete" /></a></td>
+					<td><a href="processDeleteCart.jsp?id=<%=rs.getString("productId") %>" class="badge badge-danger"><fmt:message key="cartSingleDelete" /></a></td>
 				</tr>
 				
 				<%

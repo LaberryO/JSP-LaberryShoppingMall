@@ -4,8 +4,9 @@
 <%
 	System.out.println("addCart 진행 시작");
 	String id = request.getParameter("id");
+	String user = (String) session.getAttribute("userId");
 	
-	stmt = conn.createStatement();
+	// stmt = conn.createStatement();
 	
 	try {
 	    /* // 1. 테이블 존재 여부 확인
@@ -41,7 +42,7 @@
 	        String insertSQL = "INSERT INTO cart VALUES (?, ?, ?)";
 	        pstmt = conn.prepareStatement(insertSQL);
 	        pstmt.setString(1, id);
-	        pstmt.setString(2, tempUser);
+	        pstmt.setString(2, user);
 	        pstmt.setInt(3, 1);
 	        
 	        pstmt.executeUpdate();

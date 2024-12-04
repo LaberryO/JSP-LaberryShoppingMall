@@ -4,17 +4,18 @@
 <%
 	try {
 		String id = request.getParameter("id");
+		String user = (String) session.getAttribute("userId");
 		
 		if (id != null) {
 			String deleteSQL = "delete from cart where userId=? and productId=?";
 			pstmt = conn.prepareStatement(deleteSQL);
-			pstmt.setString(1, tempUser);
+			pstmt.setString(1, user);
 			pstmt.setString(2, id);	
 			System.out.println(id+"를 삭제했습니다.");
 		} else {
 			String deleteSQL = "delete from cart where userId=?";
 			pstmt = conn.prepareStatement(deleteSQL);
-			pstmt.setString(1, tempUser);
+			pstmt.setString(1, user);
 			System.out.println("모든 항목을 삭제했습니다.");
 		}
 		

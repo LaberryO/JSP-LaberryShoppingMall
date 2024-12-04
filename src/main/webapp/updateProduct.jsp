@@ -31,8 +31,8 @@
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
-		
-		if (!rs.next()) response.sendRedirect("index.jsp?status=InvalidRequest");
+		try {
+			rs.next();
 	%>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
@@ -137,6 +137,20 @@
 </form>
 			</div>
 	</div>
+	<%
+		} catch (SQLException e) {
+			e.printStackTrace();
+			response.sendRedirect("index.jsp?status=InvalidRequest");
+		} finally {
+			try {
+				if (rs != null) rs.close();
+		        if (pstmt != null) pstmt.close();
+		        if (conn != null) conn.close();
+			} catch (SQLException e) {   
+				e.printStackTrace();
+			}
+		}
+	%>
 	<%@ include file="footer.jsp" %>
 	<!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

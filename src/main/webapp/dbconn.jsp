@@ -15,7 +15,7 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	String tempUser = "test"; // 임시 유저
+	// String tempUser = "test"; // 임시 유저
 	
 	System.out.println("[ "+formattedDate+" ]");
 	try {
