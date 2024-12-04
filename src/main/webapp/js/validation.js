@@ -93,7 +93,7 @@ function form_check_addUser() {
     if (!validateField(document.getElementById("userName"), "userName")) return false;
     if (!validateField(document.getElementById("userPW"), "userPW")) return false;
     if (!validateField(document.getElementById("userPhone"), "userPhone", /^\d+$/)) return false;
-    
+	
     // 1901년 1월 1일 생일 방지
     let userYear = document.getElementById("birthYear").value;
     let userMonth = document.getElementById("birthMonth").value;

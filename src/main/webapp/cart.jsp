@@ -38,7 +38,7 @@
 			<table width="100%">
 				<tr>
 					<td align="left">
-						<a href="processDeleteProduct.jsp" class="btn btn-danger"><fmt:message key="cartDelete" /></a>
+						<a href="processDeleteCart.jsp" class="btn btn-danger"><fmt:message key="cartDelete" /></a>
 					</td>
 					<td align="right">
 						<a href="" class="btn btn-success"><fmt:message key="cartOrder" /></a>
