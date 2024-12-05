@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.jsj.util.ConditionTranslator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,8 +49,13 @@
 			String sql = "select * from product where productId='"+id+"'";
         	pstmt = conn.prepareStatement(sql);
         	rs = pstmt.executeQuery();
-        	rs.next();
-        	String condition = ConditionTranslator.translateCondition(rs.getString("condition"));
+        	if(!rs.next()) {
+        		response.sendRedirect("index.jsp?status=InvalidRequest");
+        		return;
+        	}
+        		int productId = rs.getInt("productId");
+				DecimalFormat df = new DecimalFormat("00000");
+        		String condition = ConditionTranslator.translateCondition(rs.getString("condition"));
 		%>
 		<div class="row">
 			<div class="col-md-6">
@@ -58,15 +64,15 @@
 			<div class="col-md-6">
 	  			<h3><%=rs.getString("productName") %></h3>
 	  			<p><%=rs.getString("description") %></p>
-	  			<p><b><fmt:message key="productId" /> : </b><span><%=rs.getString("productId") %></span></p>
+	  			<p><b><fmt:message key="productId" /> : </b><span><%=df.format(productId) %></span></p>
 	  			<p><b><fmt:message key="category" /> : </b><span><%=rs.getString("category") %></span></p>
 	  			<p><b><fmt:message key="condition" /> : </b><span><%=condition %></span></p>
 	  			<p><b><fmt:message key="unitPrice" /> : </b><span><%=rs.getString("unitPrice") %></span></p>
   				<p>
-  				<form action="addCart.jsp?id=<%=rs.getString("productId")%>" name="addForm" method="post">
+  				<form action="processAddCart.jsp?id=<%=rs.getString("productId")%>" name="addForm" method="post">
   					<button class="btn btn-info" onclick="addToCart();"><fmt:message key="addToCart" /></button>
   					<a href="cart.jsp" class="btn btn-danger me-1" ><fmt:message key="intoCart" /> &raquo;</a>
-  					<a href="index.jsp#portfolio" class="btn btn-secondary"><fmt:message key="returnProduct" /> &raquo;</a>
+  					<a onclick="gotoIndex('portfolio',event)" class="btn btn-secondary"><fmt:message key="returnProduct" /> &raquo;</a>
   				</form>
   					
   				</p>
