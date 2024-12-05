@@ -39,7 +39,7 @@
 			</div>
 			<div class="row">
 				<form class="g-3" action="processUser.jsp" method="post"
-					name="registerUser" onsubmit="return form_check_addUser(event)">
+					name="registerUser" onsubmit="return form_check('user')">
 					<div class="row m-3">
 						<div class="col-2">
 							<label for="userId"><fmt:message key="userId" /></label>
