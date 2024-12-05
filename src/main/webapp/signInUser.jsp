@@ -38,7 +38,7 @@
 			<div class="row mt-5 d-flex justify-content-center">
 				<div class="col-4">
 					<form action="processSignInUser.jsp" method="post" enctype="utf-8"
-						name="signInUser" class="border border-dark border-3 rounded">
+						name="signInUser" class="border border-dark border-3 rounded" onsubmit="return form_check('signin')">
 						<div class="row m-3">
 							<div class="col-5">
 								<label for="userId" class=""><fmt:message key="userId" /></label>
@@ -58,7 +58,7 @@
 							</div>
 						</div>
 						<div class="row m-3 mt-5 d-flex justify-content-center">
-							<button class="btn btn-secondary"
+							<button type="submit" class="btn btn-secondary"
 								style="flex-grow: 0; width: auto;">
 								<fmt:message key="loginUser" />
 							</button>
@@ -80,6 +80,7 @@
 		<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 		<!-- <script src="js/language.js"></script> -->
 		<script src="js/checkStatus.js"></script>
+		<script src="js/validation.js"></script>
 	</body>
 </fmt:bundle>
 </html>
