@@ -33,7 +33,7 @@
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         		<li><a class="dropdown-item" href="addProduct.jsp"><fmt:message key="registerProduct" /></a></li>
                         		<li><a class="dropdown-item" href="index.jsp?edit=update#product"><fmt:message key="updateProduct" /></a></li>
-                        		<li><a class="dropdown-item" href="editProduct.jsp?edit=delete"><fmt:message key="deleteProduct" /></a></li>
+                        		<li><a class="dropdown-item" href="deleteProduct.jsp"><fmt:message key="deleteProduct" /></a></li>
                         	</ul>
                         </li>
                         <%
