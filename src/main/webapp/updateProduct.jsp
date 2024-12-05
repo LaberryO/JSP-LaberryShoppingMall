@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
@@ -25,8 +26,15 @@
 <body>
 	<%@ include file="dbconn.jsp" %>
 	<%
-		String id = request.getParameter("id");
+		String user = (String) session.getAttribute("userId");
+		if (!"admin".equals(user)) {
+			response.sendRedirect("index.jsp?status=InvalidRequest");
+			return;
+		}
+		DecimalFormat df = new DecimalFormat("00000");	
 	
+		String id = request.getParameter("id");
+		int productId = Integer.valueOf(id);
 		String sql = "select * from product where productId=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
@@ -49,7 +57,7 @@
         <div class="col-4">
             <input type="text" class="form-control" id="productId" 
                    name="productId" 
-                   value="<%= StringEscapeUtils.escapeHtml4(rs.getString("productId") != null ? rs.getString("productId") : "") %>">
+                   value="<%=df.format(productId) %>" readonly>
         </div>
     </div>
     <div class="row m-3">
