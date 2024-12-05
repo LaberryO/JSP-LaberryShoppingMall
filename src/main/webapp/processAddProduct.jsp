@@ -13,7 +13,7 @@
 		int maxSize = 5 * 1024 * 1024;
 		
 		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-		String productId = multi.getParameter("newProduct");
+		String productId = multi.getParameter("productId");
 		String productName = multi.getParameter("productName");
 	    String unitPrice = multi.getParameter("unitPrice");
 	    String description = multi.getParameter("description");
@@ -46,19 +46,19 @@
 	    System.out.print(newProduct.getProductId());
 	    System.out.print("test");
 	    System.out.print(dao); */
-	    String sql = "insert into product values(?,?,?,?,?,?,?,?)";
+	    String sql = "insert into product (productName, unitPrice, description, category, condition, fileName, quantity) values (?,?,?,?,?,?,?)";
 	    pstmt = conn.prepareStatement(sql);
-	    pstmt.setString(1, productId);
-	    pstmt.setString(2, productName);
-	    pstmt.setString(3, unitPrice);
-	    pstmt.setString(4, description);
-	    pstmt.setString(5, category);
-	    pstmt.setString(6, condition);
-	    pstmt.setString(7, fileName);
-	    pstmt.setInt(8, pquantity);
+	    /* pstmt.setString(1, productId); */
+	    pstmt.setString(1, productName);
+	    pstmt.setString(2, unitPrice);
+	    pstmt.setString(3, description);
+	    pstmt.setString(4, category);
+	    pstmt.setString(5, condition);
+	    pstmt.setString(6, fileName);
+	    pstmt.setInt(7, pquantity);
 	    pstmt.executeUpdate();
 		
-	    response.sendRedirect("index.jsp");
+	    response.sendRedirect("index.jsp?status=AddProduct");
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
