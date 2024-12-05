@@ -35,6 +35,14 @@ function checkStatus() {
 		InvalidRequest: {
 			ko: "잘못된 접근입니다.",
 			en: "Invalid request."
+		},
+		AddProduct: {
+			ko: "상품이 성공적으로 추가되었습니다.",
+			en: "The product has been added successfully."
+		},
+		NeedLogin: {
+			ko: "로그인이 필요합니다.",
+			en: "You must log in."
 		}
 	};
 

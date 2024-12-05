@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -36,22 +37,29 @@
 						<fmt:message key="registerProduct" />
 					</h1>
 				</div>
-				<%-- <div class="col-6" align="right">
-				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
-				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
-			</div> --%>
 			</div>
+			<%@ include file="dbconn.jsp" %>
+			<%
+				
+				String sql = "select productId from product order by unitPrice asc fetch first 1 rows only";
+        		pstmt = conn.prepareStatement(sql);
+        		rs = pstmt.executeQuery();
+        		rs.next();
+				int productId = rs.getInt("productId");
+				productId += 1;
+				DecimalFormat df = new DecimalFormat("00000");
+			%>
 			<div class="row">
 				<form class="g-3" action="processAddProduct.jsp" method="post"
-					enctype="multipart/form-data" name="registerNewProduct">
+					enctype="multipart/form-data" name="registerNewProduct" onsubmit="return form_check('product')">
 					<div class="row m-3">
 						<div class="col-2">
-							<label for="newProduct" class=""><fmt:message
+							<label for="productId" class=""><fmt:message
 									key="productId" /></label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control" id="newProduct"
-								placeholder="" name="newProduct">
+							<input type="text" class="form-control" id="productId"
+								placeholder="" name="productId" value=<%=df.format(productId) %> readonly>
 						</div>
 					</div>
 					<div class="row m-3">
@@ -135,8 +143,7 @@
 					</div>
 					<div class="row m-3">
 						<div class="col-6">
-							<button class="btn btn-secondary mb-3 btn-block"
-								onclick="form_check_addProduct()">
+							<button class="btn btn-secondary mb-3 btn-block">
 								<fmt:message key="button" />
 							</button>
 
