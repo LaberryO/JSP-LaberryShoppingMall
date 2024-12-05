@@ -2,9 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="dbconn.jsp" %>
 <%
-	System.out.println("addCart 진행 시작");
+	System.out.println("processAddCart 진행 시작");
 	String id = request.getParameter("id");
 	String user = (String) session.getAttribute("userId");
+	if (user == null) {
+		response.sendRedirect("product.jsp?id="+id+"&status=NeedLogin");
+		return;
+	}
 	
 	// stmt = conn.createStatement();
 	
@@ -53,10 +57,9 @@
 	} catch (SQLException e) {
 	    System.out.println("SQL 문제 발생: " + e.getMessage());
 	} finally {
-		System.out.println("addCart 진행 완료");
+		System.out.println("processAddCart 진행 완료");
+		response.sendRedirect("product.jsp?id="+id+"&status=cart");
 	}
-	
-	response.sendRedirect("product.jsp?id="+id+"&status=cart");
 %>
 <!DOCTYPE html>
 <html>
