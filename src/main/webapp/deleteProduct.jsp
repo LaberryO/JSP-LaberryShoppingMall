@@ -47,12 +47,6 @@
                 	pstmt = conn.prepareStatement(sql);
                 	rs = pstmt.executeQuery();
                 	while(rs.next()) {
-                		/* ArrayList<Product> cartList = (ArrayList<Product>)session.getAttribute("cartlist");
-					if(cartList == null) cartList = new ArrayList<Product>();
-					for(int i=0; i<cartList.size(); i++) {
-						Product product = cartList.get(i);
-						int total = product.getUnitPrice() * product.getQuantity(); // total = 소계
-						sum += total; */
 				%>
 				<tr>
 					<td><%=rs.getString("productId") %> - <%=rs.getString("productName") %></td>
