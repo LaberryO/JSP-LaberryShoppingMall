@@ -28,13 +28,11 @@
 	<%
 		String where = null;
 		String status = null;
+		Boolean isProblem = false;
 		
 		String user = (String) session.getAttribute("userId");
 		if (!"admin".equals(user)) {
-			System.out.println("관리자가 아닙니다.");
-			if (where == null) where = "index";
-		    if (status == null) status = "InvalidRequest";
-			response.sendRedirect(where+".jsp?status="+status);
+			isProblem = true;
 			return;
 		}
 		DecimalFormat df = new DecimalFormat("00000");	
@@ -49,9 +47,7 @@
 				rs = pstmt.executeQuery();
 				if(!rs.next()) {
 					System.out.println("id가 존재하지 않습니다.");
-					if (where == null) where = "index";
-				    if (status == null) status = "InvalidRequest";
-					response.sendRedirect(where+".jsp?status="+status);
+					isProblem = true;
 					return;
 				}
 	%>
@@ -62,7 +58,7 @@
 			</div>
 		</div>
 		<div class="row">
-	<form class="g-3" action="processUpdateProduct.jsp" method="post" name="updateProduct" onsubmit="return form_check_updateProduct()">
+	<form class="g-3" action="processUpdateProduct.jsp" method="post" name="updateProduct" onsubmit="return form_check('product')">
     <div class="row m-3">
         <div class="col-2">
             <label for="productId"><fmt:message key="productId" /></label>
@@ -170,6 +166,12 @@
 			} catch (SQLException e) {   
 				e.printStackTrace();
 			}
+			
+			if (isProblem == true) {
+				if (where == null) where = "index";
+			    if (status == null) status = "InvalidRequest";
+				response.sendRedirect(where+".jsp?status="+status);
+			}
 		}
 	%>
 	<%@ include file="footer.jsp" %>
@@ -182,7 +184,7 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <!-- <script src="js/language.js"></script> -->
+    <script src="js/validation.js"></script>
 </body>
 </fmt:bundle>
 </html>
