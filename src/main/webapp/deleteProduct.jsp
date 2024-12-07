@@ -23,6 +23,13 @@
 <fmt:bundle basename="bundle.message">
 <body>
 	<%@ include file="dbconn.jsp" %>
+	<%
+		String user = (String) session.getAttribute("userId");
+		if (!"admin".equals(user)) {
+			response.sendRedirect("index.jsp?status=InvalidRequest");
+			return;
+		}
+	%>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
 			<div class="col-6"><h1><fmt:message key="deleteProduct" /></h1></div>
@@ -70,7 +77,7 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <!-- <script src="js/language.js"></script> -->
+    <script src="js/checkStatus.js"></script>
 </body>
 </fmt:bundle>
 </html>

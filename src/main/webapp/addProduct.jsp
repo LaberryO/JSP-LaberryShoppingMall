@@ -40,12 +40,13 @@
 			</div>
 			<%@ include file="dbconn.jsp" %>
 			<%
-				
+				int productId = 0;
 				String sql = "select productId from product order by unitPrice asc fetch first 1 rows only";
         		pstmt = conn.prepareStatement(sql);
         		rs = pstmt.executeQuery();
-        		rs.next();
-				int productId = rs.getInt("productId");
+        		if(rs.next()) {
+        			productId = rs.getInt("productId");	
+        		}
 				productId += 1;
 				DecimalFormat df = new DecimalFormat("00000");
 			%>

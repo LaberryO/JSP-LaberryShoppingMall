@@ -22,17 +22,12 @@
 <%@ include file="nav.jsp" %>
 <fmt:bundle basename="bundle.message">
 <body>
-	
 	<%@ include file="dbconn.jsp" %>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
 			<div class="col-6">
 				<h1><fmt:message key="cartTitle" /></h1>
 			</div>
-			<%-- <div class="col-6" align="right">
-				<a class="btn btn-secondary m-1" onclick="changeLanguage('ko')"><fmt:message key="korean" /></a>
-				<a class="btn btn-secondary m-1" onclick="changeLanguage('en')"><fmt:message key="english" /></a>
-			</div> --%>
 		</div>
 		<div class="row mt-5">
 			<table width="100%">

@@ -26,21 +26,34 @@
 <body>
 	<%@ include file="dbconn.jsp" %>
 	<%
+		String where = null;
+		String status = null;
+		
 		String user = (String) session.getAttribute("userId");
 		if (!"admin".equals(user)) {
-			response.sendRedirect("index.jsp?status=InvalidRequest");
+			System.out.println("관리자가 아닙니다.");
+			if (where == null) where = "index";
+		    if (status == null) status = "InvalidRequest";
+			response.sendRedirect(where+".jsp?status="+status);
 			return;
 		}
 		DecimalFormat df = new DecimalFormat("00000");	
-	
 		String id = request.getParameter("id");
-		int productId = Integer.valueOf(id);
-		String sql = "select * from product where productId=?";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, id);
-		rs = pstmt.executeQuery();
+		
 		try {
-			rs.next();
+			if (id != null) {
+				int productId = Integer.valueOf(id);
+				String sql = "select * from product where productId=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if(!rs.next()) {
+					System.out.println("id가 존재하지 않습니다.");
+					if (where == null) where = "index";
+				    if (status == null) status = "InvalidRequest";
+					response.sendRedirect(where+".jsp?status="+status);
+					return;
+				}
 	%>
 	<div class="container mt-5 pt-5">
 		<div class="row mt-5">
@@ -145,10 +158,10 @@
 </form>
 			</div>
 	</div>
-	<%
+	<%	
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			response.sendRedirect("index.jsp?status=InvalidRequest");
 		} finally {
 			try {
 				if (rs != null) rs.close();

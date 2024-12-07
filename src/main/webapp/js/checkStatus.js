@@ -40,6 +40,10 @@ function checkStatus() {
 			ko: "상품이 성공적으로 추가되었습니다.",
 			en: "The product has been added successfully."
 		},
+		DeleteProduct: {
+			ko: "상품이 성공적으로 제거되었습니다.",
+			en: "The product has been removed successfully."
+		},
 		NeedLogin: {
 			ko: "로그인이 필요합니다.",
 			en: "You must log in."
