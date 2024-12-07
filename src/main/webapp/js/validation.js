@@ -18,7 +18,6 @@ function form_check(formType) {
 
 	const messages = {
 		ko: {
-			productId: "상품 ID는 자동으로 생성됩니다. 입력할 수 없습니다.",
 			productName: "상품명을 입력해주세요.",
 			unitPrice: "상품 가격을 입력해주세요.",
 			unitPriceInvalid: "상품 가격은 숫자만 입력할 수 있습니다.",
@@ -39,7 +38,6 @@ function form_check(formType) {
 			userPWInvalid: "비밀번호는 6자 이상 30자 이하의 알파벳과 숫자로만 구성되어야 합니다.",
 		},
 		en: {
-			productId: "Product ID is automatically generated and cannot be entered.",
 			productName: "Please enter the product name.",
 			unitPrice: "Please enter the product price.",
 			unitPriceInvalid: "The product price can only contain numbers.",
