@@ -12,6 +12,14 @@ function checkStatus() {
 			ko: "장바구니에 상품이 추가되었습니다.",
 			en: "The product has been successfully added to your cart."
 		},
+		DeleteSingleCart: {
+			ko: "장바구니에서 해당 항목을 제거했습니다.",
+			en: "The item has been removed from your shopping cart."
+		},
+		DeleteCart: {
+			ko: "장바구니를 비웠습니다.",
+			en: "You have emptied your shopping cart."
+		},
 		register: {
 			ko: "회원가입에 성공하였습니다.",
 			en: "Your account has been successfully registered."
@@ -39,6 +47,10 @@ function checkStatus() {
 		AddProduct: {
 			ko: "상품이 성공적으로 추가되었습니다.",
 			en: "The product has been added successfully."
+		},
+		UpdateProduct: {
+			ko: "상품을 성공적으로 수정하였습니다.",
+			en: "The product has been updated successfully."
 		},
 		DeleteProduct: {
 			ko: "상품이 성공적으로 제거되었습니다.",

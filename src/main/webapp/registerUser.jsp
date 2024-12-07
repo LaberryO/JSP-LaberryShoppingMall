@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<form class="g-3" action="processUser.jsp" method="post"
+				<form class="g-3" action="processAddUser.jsp" method="post"
 					name="registerUser" onsubmit="return form_check('user')">
 					<div class="row m-3">
 						<div class="col-2">
