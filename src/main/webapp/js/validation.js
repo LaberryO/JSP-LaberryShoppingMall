@@ -8,7 +8,7 @@ function getLanguageFromCookie() {
 
 function form_check(formType) {
 	// formType 유효성 검사
-	if (formType !== 'product' && formType !== 'user' && formType !== 'signin') {
+	if (formType !== 'product' && formType !== 'user' && formType !== 'signin' && formType != 'board') {
 		console.error('Invalid formType');
 		return false;
 	}
@@ -36,6 +36,9 @@ function form_check(formType) {
 			birthDate: "정말로 1901년 1월 1일생이십니까?",
 			userIdInvalid: "아이디는 5자 이상 20자 이하의 알파벳과 숫자로만 구성되어야 합니다.",
 			userPWInvalid: "비밀번호는 6자 이상 30자 이하의 알파벳과 숫자로만 구성되어야 합니다.",
+			boardSubject: "게시판 제목을 입력해주세요.",
+			boardMessage: "게시판 메시지를 입력해주세요.",
+			boardMessageTooLong: "게시판 메시지는 3000자를 넘길 수 없습니다."			
 		},
 		en: {
 			productName: "Please enter the product name.",
@@ -56,6 +59,9 @@ function form_check(formType) {
 			birthDate: "Are you sure you were born on January 1st, 1901?",
 			userIdInvalid: "The user ID must be between 5 and 20 characters, containing only letters and numbers.",
 			userPWInvalid: "The password must be between 6 and 30 characters, containing only letters and numbers.",
+			boardSubject: "Please enter the board subject.",
+			boardMessage: "Please enter the board message.",
+			boardMessageTooLong: "The board message cannot exceed 3000 characters."
 		}
 	};
 
@@ -67,6 +73,11 @@ function form_check(formType) {
 		}
 		if (regex && !regex.test(field.value)) {
 			alert(language === "en" ? messages.en[`${messageKey}Invalid`] : messages.ko[`${messageKey}Invalid`]);
+			field.focus();
+			return false;
+		}
+		if (maxLength && field.value.length > maxLength) {
+			alert(language === "en" ? messages.en[`${messageKey}TooLong`] : messages.ko[`${messageKey}TooLong`]);
 			field.focus();
 			return false;
 		}
@@ -110,6 +121,10 @@ function form_check(formType) {
 
 		// 모든 필드가 유효하면 폼 제출
 		return true;
+	} else if (formType === 'board') {
+		if (!validateField(document.getElementById("userName"), "userName")) return false;
+		if (!validateField(document.getElementById("boardSubject"), "boardSubject")) return false;
+		if (!validateField(document.getElementById("boardMessage"), "boardMessage", null, 3000)) return false;
 	}
 
 	return true; // 폼 제출

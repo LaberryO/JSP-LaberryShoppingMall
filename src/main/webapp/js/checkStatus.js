@@ -59,6 +59,10 @@ function checkStatus() {
 		NeedLogin: {
 			ko: "로그인이 필요합니다.",
 			en: "You must log in."
+		},
+		AddContact: {
+			ko: "문의가 접수되었습니다.",
+			en: "Your inquiry has been received."
 		}
 	};
 
