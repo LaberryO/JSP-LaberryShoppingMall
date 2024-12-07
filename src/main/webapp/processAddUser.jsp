@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="dbconn.jsp"%>
 <%
+	String where = null;
+	String status = null;
 	try {
 		request.setCharacterEncoding("UTF-8");
 		String birthYear = request.getParameter("birthYear");
@@ -28,7 +30,8 @@
 	    pstmt.setString(7, userEmail);
 	    pstmt.executeUpdate();
 	    
-	    response.sendRedirect("index.jsp?status=register");
+	    where = "index";
+	    status = "register";
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
@@ -39,7 +42,9 @@
 		}  catch (SQLException e) {   
 			e.printStackTrace();
 		}
-        
+		if (where == null) where = "index";
+	    if (status == null) status = "InvalidRequest";
+		response.sendRedirect(where+".jsp?status="+status);
 	}
 
 %>

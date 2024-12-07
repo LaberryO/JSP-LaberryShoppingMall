@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="dbconn.jsp" %>
 <%
+	String where = null;
+	String status = null;
 	try {
 		String id = request.getParameter("id");
 		String user = (String) session.getAttribute("userId");
@@ -12,15 +14,16 @@
 			pstmt.setString(1, user);
 			pstmt.setString(2, id);	
 			System.out.println(id+"를 삭제했습니다.");
+			status = "DeleteSingleCart";
 		} else {
 			String deleteSQL = "delete from cart where userId=?";
 			pstmt = conn.prepareStatement(deleteSQL);
 			pstmt.setString(1, user);
 			System.out.println("모든 항목을 삭제했습니다.");
+			status = "DeleteCart";
 		}
-		
 		pstmt.executeUpdate();
-		response.sendRedirect("cart.jsp");		
+		where = "cart";
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
@@ -31,7 +34,10 @@
 		}  catch (SQLException e) {   
 			e.printStackTrace();
 		}
-        
+		
+		if (where == null) where = "index";
+	    if (status == null) status = "InvalidRequest";
+	    response.sendRedirect(where+".jsp?status="+status);
 	}
 	
 %>

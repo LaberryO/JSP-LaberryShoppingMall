@@ -5,6 +5,8 @@
 <%@page import="com.oreilly.servlet.MultipartRequest" %>
 <%@ include file="dbconn.jsp" %>
 <%
+	String where = null;
+	String status = null;
 	try {
 		request.setCharacterEncoding("UTF-8");
 
@@ -50,15 +52,16 @@
 	    pstmt = conn.prepareStatement(sql);
 	    /* pstmt.setString(1, productId); */
 	    pstmt.setString(1, productName);
-	    pstmt.setString(2, unitPrice);
+	    pstmt.setInt(2, price);
 	    pstmt.setString(3, description);
 	    pstmt.setString(4, category);
 	    pstmt.setString(5, condition);
 	    pstmt.setString(6, fileName);
 	    pstmt.setInt(7, pquantity);
 	    pstmt.executeUpdate();
-		
-	    response.sendRedirect("index.jsp?status=AddProduct");
+	    
+	    where = "index";
+	    status = "AddProduct";
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
@@ -69,6 +72,9 @@
 		} catch (SQLException e) {   
 			e.printStackTrace();
 		}
+		if (where == null) where = "index";
+	    if (status == null) status = "InvalidRequest";
+		response.sendRedirect(where+".jsp?status="+status);
 	}
 
 %>
