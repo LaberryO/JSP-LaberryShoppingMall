@@ -29,7 +29,7 @@
                         	if ("admin".equals(userId)) {
                         %>
                         <li class="nav-item dropdown">
-                        	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="registerProduct" /></a>
+                        	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="admin" /></a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         		<li><a class="dropdown-item" href="addProduct.jsp"><fmt:message key="registerProduct" /></a></li>
                         		<li><a class="dropdown-item" href="index.jsp?edit=update#product"><fmt:message key="updateProduct" /></a></li>
@@ -40,7 +40,19 @@
                         	}
                         %>
                         <li class="nav-item dropdown">
-                        	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><fmt:message key="navUser" /></a>
+                        	<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        		<%
+                        			if (userId != null) {
+                        		%>
+                        		<fmt:message key="navUser" />
+                        		<%
+                        			} else {                        		
+                        		%>
+                        		<fmt:message key="loginUser" />
+                        		<%
+                        			}
+                        		%>
+                        	</a>
                         	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         	<%
 	                        	if (userId == null) {
