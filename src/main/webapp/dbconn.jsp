@@ -1,7 +1,7 @@
+<%@page import="com.jsj.util.DateController"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="setTime.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,7 @@
 	
 	// String tempUser = "test"; // 임시 유저
 	
-	System.out.println("[ "+formattedDate+" ]");
+	System.out.println("[ "+DateController.ft5Date()+" ]");
 	try {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "C##dbexam";
