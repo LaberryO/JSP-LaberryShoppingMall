@@ -1,2 +1,3 @@
-# jspWebPortfolio
-JSJ jsp web portfolio
+# JSP로 만드는 쇼핑몰 프로젝트
+
+미래유망분야 인력양성사업 JSP 실습
